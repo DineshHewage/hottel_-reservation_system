@@ -41,7 +41,8 @@ public class RoomManagmentController implements RoomManagmentService{
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                RoomDetails rd = new RoomDetails(resultSet.getInt("room_number"),
+                RoomDetails rd = new RoomDetails(
+                        resultSet.getInt("room_number"),
                         resultSet.getString("room_type"),
                         resultSet.getDouble("price_per_night"),
                         resultSet.getString("description"),

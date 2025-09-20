@@ -157,7 +157,6 @@ public class RoomManagementFormController implements Initializable {
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         colRoomStatus.setCellValueFactory(new PropertyValueFactory<>("roomStatus"));
 
-        //tblRoomDetails.setItems(loadRoomDetails());
         loadRoomDetails();
 
 //        -------Show Room Infor as per user clicks.

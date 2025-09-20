@@ -9,7 +9,6 @@ import lombok.*;
 @ToString
 
 public class CustomerDetails {
-    private int customer_id;
     private String name;
     private String email;
     private String phone;
