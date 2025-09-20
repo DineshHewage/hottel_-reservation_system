@@ -7,6 +7,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
+import javax.swing.*;
+import java.sql.*;
+
 public class CustomerManagementFormController {
 
     @FXML
@@ -51,6 +54,31 @@ public class CustomerManagementFormController {
     @FXML
     void btnAddOnAction(ActionEvent event) {
 
+        String customerName = txtName.getText();
+        String email = txtEmail.getText();
+        String phone = txtPhoneNumber.getText();
+        String address = txtAddress.getText();
+
+        try {
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotel_reservation", "root", "Dinesh@12345");
+            String sql = "INSERT INTO customers (name, email, phone, address) VALUES (?,?,?,?)";
+            PreparedStatement ps = con.prepareStatement(sql);
+
+
+            ps.setObject(1,customerName);
+            ps.setObject(2,email);
+            ps.setObject(3,phone);
+            ps.setObject(4,address);
+
+            int i = ps.executeUpdate();
+            if (i > 0) {
+                JOptionPane.showMessageDialog(null, "Customer added successfully!");
+            }else {
+                JOptionPane.showMessageDialog(null, "Failed to add customer.");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
@@ -67,5 +95,4 @@ public class CustomerManagementFormController {
     void btnUpdateOnAction(ActionEvent event) {
 
     }
-
 }
